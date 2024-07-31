@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MAUIusingXAMPP.ViewModel;
+using Microsoft.Extensions.Logging;
 
 namespace MAUIusingXAMPP
 {
@@ -14,6 +15,10 @@ namespace MAUIusingXAMPP
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+            // registers with the dependency service
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<MainViewModel>();
 
 #if DEBUG
     		builder.Logging.AddDebug();
