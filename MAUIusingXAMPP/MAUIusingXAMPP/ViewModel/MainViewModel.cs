@@ -39,5 +39,15 @@ namespace MAUIusingXAMPP.ViewModel
                 Items.Remove(task);
             }      
         }
+
+        [RelayCommand]
+        async Task Tap(string s)
+        {
+            //On tapping the task it navigates to the DetailPage
+            // await Shell.Current.GoToAsync(nameof(DetailPage));
+
+            //passing data property
+            await Shell.Current.GoToAsync($"{nameof(DetailPage)}?id={s}");
+        }
     }
 }

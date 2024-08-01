@@ -17,11 +17,16 @@ namespace MAUIusingXAMPP
                 });
 
             // registers with the dependency service
+            //singleton is a global that creates one copy and uses it through out
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<MainViewModel>();
 
+            //transient will create and destroy the page each time
+            builder.Services.AddSingleton<DetailPage>();
+            builder.Services.AddSingleton<DetailViewModel>();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
