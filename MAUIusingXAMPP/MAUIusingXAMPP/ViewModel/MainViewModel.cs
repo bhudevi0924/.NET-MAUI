@@ -11,10 +11,12 @@ namespace MAUIusingXAMPP.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
+        IConnectivity connectivity;
 
-        public MainViewModel() 
+        public MainViewModel(IConnectivity connectivity) 
         {
             Items = new ObservableCollection<string>();
+            this.connectivity = connectivity;
         }
         [ObservableProperty]
         ObservableCollection<string> items;
@@ -23,10 +25,17 @@ namespace MAUIusingXAMPP.ViewModel
         string text;
 
         [RelayCommand]
-        void Add()
+        async Task Add()
         {
             if (string.IsNullOrWhiteSpace(Text))
                 return;
+
+            if(connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                //(title, message, button)
+                await Shell.Current.DisplayAlert("No Internet available!", "","OK");
+                return;
+            }
             Items.Add(Text);
             // add a new task
             Text = string.Empty;

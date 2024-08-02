@@ -15,6 +15,9 @@ namespace MAUIusingXAMPP
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            
+            //registers IConnectivity
+            builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
 
             // registers with the dependency service
             //singleton is a global that creates one copy and uses it through out
